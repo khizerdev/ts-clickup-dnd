@@ -8,11 +8,12 @@ import { Column as ColumnType } from '@/typings';
 
 const Board = () => {
  
-  const [board, getBoard,setBoardState] = useBoardStore(
+  const [board, getBoard,setBoardState, updateTodoInDb] = useBoardStore(
     (state) => [
         state.board,
         state.getBoard,
         state.setBoardState,
+        state.updateTodoInDb,
     ]
   );
 
@@ -92,7 +93,7 @@ const Board = () => {
       });
 
       // update in db
-    //   updateTodoInDb(todoMoved, finishCol.id);
+      updateTodoInDb(todoMoved, finishCol.id);
 
       setBoardState({ ...board, columns: newColumns });
     }

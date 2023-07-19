@@ -51,7 +51,7 @@ function Task({
       ref={innerRef}
     >
       <div className="flex justify-between items-center p-5">
-        <p className="font-normal">{todo.title}</p>
+        <p className="font-normal">{todo.type}</p>
         <button
           className="text-red-500 hover:text-red-600"
           onClick={() => deleteTask(index, todo, id)}

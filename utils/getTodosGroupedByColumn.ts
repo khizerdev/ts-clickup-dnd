@@ -20,7 +20,7 @@ const getTodosGroupedByColumn = async () => {
         acc.get(todo.status)!.todos.push({
             $id: todo.$id,
             $createdAt: todo.$createdAt,
-            title: todo.type,
+            type: todo.type,
             status: todo.status,
             ...(todo.image && { image: JSON.parse(todo.image) as Image })
         })
@@ -48,7 +48,7 @@ const getTodosGroupedByColumn = async () => {
     const board: Board = {
         columns: sortedColumns
     }
-
+    
     return board;
 }
 
