@@ -7,6 +7,7 @@ interface BoardState {
     board: Board;
     getBoard: () => void,
     deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void,
+    setBoardState: (board: Board) => void,
 }
 
 export const useBoardStore = create<BoardState>((set) => ({
@@ -36,4 +37,6 @@ export const useBoardStore = create<BoardState>((set) => ({
             todo.$id,
         )
     },
+
+    setBoardState: (board) => set({ board }),
 }))
