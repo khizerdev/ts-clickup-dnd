@@ -8,6 +8,7 @@ interface BoardState {
     getBoard: () => void,
     deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void,
     setBoardState: (board: Board) => void,
+    updateTodoInDb: (todo: Todo, columnId: TypedColumn) => void,
 }
 
 export const useBoardStore = create<BoardState>((set) => ({
@@ -39,4 +40,17 @@ export const useBoardStore = create<BoardState>((set) => ({
     },
 
     setBoardState: (board) => set({ board }),
+
+    updateTodoInDb: async (todo, columnId) => {
+        console.log(todo)
+        await databases.updateDocument(
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
+            todo.$id,
+            {
+                type: todo.type,
+                status: columnId,
+            }
+        )
+    },
 }))
