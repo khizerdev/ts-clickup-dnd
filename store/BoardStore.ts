@@ -9,6 +9,8 @@ interface BoardState {
     deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void,
     setBoardState: (board: Board) => void,
     updateTodoInDb: (todo: Todo, columnId: TypedColumn) => void,
+    searchString: string,
+    setSearchString: (searchString: string) => void,
 }
 
 export const useBoardStore = create<BoardState>((set) => ({
@@ -38,6 +40,9 @@ export const useBoardStore = create<BoardState>((set) => ({
             todo.$id,
         )
     },
+
+    searchString: "",
+    setSearchString: (searchString) => set({ searchString }),
 
     setBoardState: (board) => set({ board }),
 
