@@ -5,7 +5,15 @@ import Logo from "./Logo"
 import { ArrowPathIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
+import { useBoardStore } from "@/store/BoardStore";
+
 const Header = () => {
+
+  const [board, searchString, setSearchString] = useBoardStore((state) => [
+    state.board,
+    state.searchString,
+    state.setSearchString,
+  ]);
 
   const [loading, setLoading] = useState(false);
   const [suggestion, setSuggestion] = useState("");
@@ -27,8 +35,8 @@ const Header = () => {
               type="text"
               placeholder="Search"
               className="flex-1 outline-none p-2"
-              value=""
-              onChange={(e) => {}}
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
             ></input>
             <button hidden type="submit">
               Search
