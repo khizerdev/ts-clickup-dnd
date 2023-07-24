@@ -3,9 +3,10 @@
 import Logo from "./Logo"
 
 import { ArrowPathIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useBoardStore } from "@/store/BoardStore";
+import fetchSuggestion from "@/utils/fetchSuggestion";
 
 const Header = () => {
 
@@ -17,6 +18,22 @@ const Header = () => {
 
   const [loading, setLoading] = useState(false);
   const [suggestion, setSuggestion] = useState("");
+
+  useEffect(() => {
+    if (board.columns.size === 0) {
+      return;
+    }
+
+    setLoading(true);
+
+    const fetchSuggestionFunc = async () => {
+      const suggestion = await fetchSuggestion(board);
+      setSuggestion(suggestion);
+      setLoading(false);
+    };
+
+    fetchSuggestionFunc();
+  }, [board]);
 
   return (
     <header>
@@ -62,7 +79,12 @@ const Header = () => {
             }`}
           />
 
-          GPT is summarising your tasks for the day...
+          {
+            suggestion && !loading
+            ? 
+            suggestion
+            : 
+            "GPT is summarising your tasks for the day..."}
         </p>
       </div>
 

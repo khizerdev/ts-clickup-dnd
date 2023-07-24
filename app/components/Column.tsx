@@ -52,7 +52,7 @@ function Column({ id, index, todos }: Props) {
                   snapshot.isDraggingOver ? "bg-green-200/50" : "bg-white/50"
                 }`}
               >
-                <h2 className="flex justify-between font-bold text-xl ">
+                <h2 className="flex justify-between font-bold text-xl mb-2">
                   {idToColumnText[id]}
                   <span className="text-gray-500 bg-gray-200 rounded-full px-2 py-1 text-sm font-normal">
                     {!searchString
@@ -96,7 +96,7 @@ function Column({ id, index, todos }: Props) {
 
                   {provided.placeholder}
 
-                  <div className="px-2">
+                
                     <div
                         className="group mb-1.5 flex cursor-pointer items-center rounded p-2 hover:bg-gray-300 ltr:pl-2 rtl:pr-2"
                         style={{}}
@@ -133,7 +133,7 @@ function Column({ id, index, todos }: Props) {
                         </button>
                         </div>
                     </div>
-                    </div>
+                 
 
                 </div>
               </div>
