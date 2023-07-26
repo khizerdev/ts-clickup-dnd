@@ -1,3 +1,4 @@
+import AddModal from './components/AddModal'
 import './globals.css'
 
 export const metadata = {
@@ -12,7 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-secondary">{children}</body>
+      <body className="bg-secondary">
+        {children}
+        <AddModal></AddModal>
+      </body>
     </html>
   )
 }

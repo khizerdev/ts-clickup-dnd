@@ -4,6 +4,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { useBoardStore } from "@/store/BoardStore";
+import { useModalStore } from "@/store/AddModalStore";
 
 type Props = {
   id: TypedColumn;
@@ -21,18 +22,19 @@ const idToColumnText: {
 };
 
 function Column({ id, index, todos }: Props) {
-  const [searchString] = useBoardStore((state) => [
+  const [searchString, setNewTaskType] = useBoardStore((state) => [
     state.searchString,
+    state.setNewTaskType,
   ]);
 
-//   const [openModal] = useModalStore((state) => [
-//     state.openModal,
-//     state.closeModal,
-//   ]);
+  const [openModal] = useModalStore((state) => [
+    state.openModal,
+    state.closeModal,
+  ]);
 
   const handleAddTodo = () => {
-    // setNewTaskType(id);
-    // openModal();
+    setNewTaskType(id);
+    openModal();
   };
 
   return (
@@ -99,7 +101,7 @@ function Column({ id, index, todos }: Props) {
                 
                     <div
                         className="group mb-1.5 flex cursor-pointer items-center rounded p-2 hover:bg-gray-300 ltr:pl-2 rtl:pr-2"
-                        style={{}}
+                        onClick={handleAddTodo}
                     >
                         <svg
                         className="h-4 w-4 text-gray-500 group-hover:text-gray-700"
@@ -118,23 +120,7 @@ function Column({ id, index, todos }: Props) {
                         Add task
                         </span>
                     </div>
-                    <div className="mb-2" style={{ display: "none" }}>
-                        <input
-                        type="text"
-                        className="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Enter a task"
-                        />
-                        <div className="mt-2">
-                        <button className="inline-flex items-center border font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 text-white border-transparent bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 px-2.5 py-1.5 text-xs rounded">
-                            Add task{/**/}
-                        </button>
-                        <button className="inline-flex items-center border font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 text-gray-700 border-gray-300 bg-white hover:bg-gray-50 focus:ring-indigo-500 px-2.5 py-1.5 text-xs rounded ltr:ml-1 rtl:mr-1">
-                            Cancel{/**/}
-                        </button>
-                        </div>
-                    </div>
-                 
-
+                
                 </div>
               </div>
             )}

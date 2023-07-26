@@ -35,6 +35,7 @@ function Task({
     if (todo.image) {
       const fetchImage = async () => {
         const url = await getUrl(todo.image!);
+        console.log(url)
         if (url) {
           setImageUrl(url.toString());
         }
